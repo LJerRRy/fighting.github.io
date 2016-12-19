@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Python入门 - Jerry的博客 | Jerry&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wenjiewang.top/2016/11/05/pythonbases/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jerry&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wenjiewang.top/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/blue.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#学习手册" title="学习手册">学习手册</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>Python入门</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Jerry on
+                        2016-11-05
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Python基本知识"><a href="#Python基本知识" class="headerlink" title="Python基本知识"></a>Python基本知识</h2><ol>
+<li>区分大小写，用<code>#</code>来注释</li>
+<li>用缩进（四个空格）来表示块</li>
+<li>变量的类型可以变，即不需要删除原始变量，直接进行赋值另一种类型</li>
+<li>print，type函数，print为输出到终端，type查看类型</li>
+<li>常用数据类型有int,float,boolean(True/False),字符串</li>
+<li><p>sequence序列是一组有序的元素集合，包括tuple（定值表，也叫元组，其中元素不能改变）和list（表，元素可以改变）<br>序列元素<strong>下标从0开始</strong><br>基本样式 <strong>[下限:上限:步长]</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">s1 = (<span class="number">2</span>, <span class="number">1.3</span>, <span class="string">'love'</span>, <span class="number">5.6</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="keyword">False</span>)         <span class="comment"># s1是一个tuple,用括号来赋值</span></div><div class="line">s2 = [<span class="keyword">True</span>, <span class="number">5</span>, <span class="string">'smile'</span>]                          <span class="comment"># s2是一个list，用中括号来赋值</span></div><div class="line">s3 = [<span class="number">1</span>,[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]]                                 <span class="comment"># 一个序列作为另一个序列的元素</span></div><div class="line"><span class="keyword">print</span> s1[:<span class="number">5</span>]             <span class="comment"># 从开始到下标4 （下标5的元素 不包括在内）</span></div><div class="line"><span class="keyword">print</span> s1[<span class="number">2</span>:]             <span class="comment"># 从下标2到最后</span></div><div class="line"><span class="keyword">print</span> s1[<span class="number">0</span>:<span class="number">5</span>:<span class="number">2</span>]          <span class="comment"># 从下标0到下标4 (下标5不包括在内)，每隔2取一个元素 （下标为0，2，4的元素）</span></div><div class="line"><span class="keyword">print</span> s1[<span class="number">2</span>:<span class="number">0</span>:<span class="number">-1</span>]         <span class="comment"># 从下标2到下标1</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>字符串也是元组，所以也可以像序列一样进行相关操作</p>
+</li>
+<li>逻辑运算符 and,or,not（与或非）</li>
+<li><code>if elif else</code> 选择语句，判断条件直接接在<code>if elif</code>后面，<strong>不需要括号，但其末尾必须有个冒号</strong></li>
+<li><code>for while</code>循环， <code>for 元素 in 序列:</code>其中末尾有个冒号（while也是，判断条件不需要加括号），<code>range()</code>函数来帮助建表，<code>range(5) == [0,1,2,3,4]</code></li>
+<li><code>break, continue</code></li>
+<li><code>def</code>定义函数，可以用<code>return</code>返回函数值，可以返回多个</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_sum</span><span class="params">(a,b)</span>:</span></div><div class="line">    c = a**<span class="number">2</span> + b**<span class="number">2</span></div><div class="line">    <span class="keyword">return</span> c</div><div class="line"><span class="comment">#可以return a,b,c多个返回值</span></div></pre></td></tr></table></figure>
+<ol>
+<li>函数调用时，如果参数是表的话，然后对表进行操作，会改变表的值（引用传递），如果是整数的话，不会改变（按值传递）。</li>
+<li>类，用<code>class</code>定义类，都有一个原型（默认为object，但必须写）。属性和方法</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span><span class="params">(object)</span>:</span></div><div class="line">    have_feather = <span class="keyword">True</span> <span class="comment">#属性</span></div><div class="line">    way_of_reproduction  = <span class="string">'egg'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">move</span><span class="params">(self, dx, dy)</span>:</span> <span class="comment">#方法，其中包括一个self（第一个参数必须是self），类似于java或者c++中的this</span></div><div class="line">        position = [<span class="number">0</span>,<span class="number">0</span>]</div><div class="line">        <span class="comment">#self.have_feather = False #调用类属性</span></div><div class="line">        position[<span class="number">0</span>] = position[<span class="number">0</span>] + dx</div><div class="line">        position[<span class="number">1</span>] = position[<span class="number">1</span>] + dy</div><div class="line">        <span class="keyword">return</span> position</div><div class="line"><span class="comment">#类的继承</span></div><div class="line"><span class="comment">#子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chicken</span><span class="params">(Bird)</span>:</span></div><div class="line">    way_of_move = <span class="string">'walk'</span></div><div class="line">    possible_in_KFC = <span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Oriole</span><span class="params">(Bird)</span>:</span></div><div class="line">    way_of_move = <span class="string">'fly'</span></div><div class="line">    possible_in_KFC = <span class="keyword">False</span></div><div class="line"></div><div class="line">summer = Chicken()<span class="comment">#创建一个对象</span></div><div class="line"><span class="keyword">print</span> summer.have_feather<span class="comment">#调用对象的属性</span></div><div class="line"><span class="keyword">print</span> summer.move(<span class="number">5</span>,<span class="number">8</span>)</div></pre></td></tr></table></figure>
+<ol>
+<li><p>类中有个<strong>特殊方法（special method）</strong>  <code>__init__()</code>方法 创建对象时自动调用这个方法，初始化对象的属性。</p>
+</li>
+<li><p>list是一个类，表的运算符，比如+, -, &gt;, &lt;, 以及下标引用[start:end]等等，从根本上都是定义在类内部的方法。</p>
+</li>
+</ol>
+<h2 id="Python中词典-dictionary"><a href="#Python中词典-dictionary" class="headerlink" title="Python中词典(dictionary)"></a>Python中词典(dictionary)</h2><p>一个新的类，词典 (dictionary)。与列表相似，词典也可以储存多个元素。这种储存多个元素的对象称为容器(container)</p>
+<ol>
+<li>词典和表类似的地方，是包含有多个元素，每个元素以逗号分隔。但词典的元素包含有两部分，<strong>键</strong>和<strong>值</strong>，常见的是以字符串来表示键，也可以使用数字或者真值来表示键（不可变的对象可以作为键）。值可以是任意对象。键和值两者一一对应。</li>
+<li>与表不同的是，词典的元素没有顺序。你不能通过下标引用元素。词典是通过键来引用。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">dic = &#123;<span class="string">'tom'</span>:<span class="number">11</span>, <span class="string">'sam'</span>:<span class="number">57</span>,<span class="string">'lily'</span>:<span class="number">100</span>&#125; <span class="comment">#一个词典，词典可以为空</span></div><div class="line"><span class="keyword">print</span> type(dic)</div><div class="line">dic[<span class="string">'lilei'</span>] = <span class="number">99</span> <span class="comment">#添加元素</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dic: <span class="comment">#遍历词典</span></div><div class="line">    <span class="keyword">print</span> dic[key]</div><div class="line"></div><div class="line"><span class="keyword">print</span> dic.keys()           <span class="comment"># 返回dic所有的键</span></div><div class="line"><span class="keyword">print</span> dic.values()         <span class="comment"># 返回dic所有的值</span></div><div class="line"><span class="keyword">print</span> dic.items()          <span class="comment"># 返回dic所有的元素（键值对）</span></div><div class="line">dic.clear()                <span class="comment"># 清空dic，dict变为&#123;&#125;</span></div><div class="line"><span class="keyword">del</span> dic[<span class="string">'tom'</span>]             <span class="comment"># 删除 dic 的‘tom’元素</span></div><div class="line"><span class="comment">#del是Python中保留的关键字，用于删除对象。</span></div><div class="line"><span class="keyword">print</span> len(dic)             <span class="comment"># 返回dic元素个数</span></div></pre></td></tr></table></figure>
+<h2 id="Python进阶"><a href="#Python进阶" class="headerlink" title="Python进阶"></a>Python进阶</h2><h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><p>对象名 = open(文件名，模式)<br>最常用的模式有：</p>
+<pre><code>r 打开只读文件，该文件必须存在。
+r+ 打开可读写的文件，该文件必须存在。
+w 打开只写文件，若文件存在则文件长度清为0，即该文件内容会消失。若文件不存在则建立该文件。
+w+ 打开可读写文件，若文件存在则文件长度清为零，即该文件内容会消失。若文件不存在则建立该文件。
+a 以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。
+a+ 以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。
+上述的形态字符串都可以再加一个b字符，如rb、w+b或ab＋等组合，加入b 字符用来告诉函数库打开的文件为二进制文件，而非纯文字文件。
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">"test.txt"</span>,<span class="string">"r"</span>)</div><div class="line">content = f.read(N)          <span class="comment"># 读取N bytes的数据</span></div><div class="line">content = f.readline()       <span class="comment"># 读取一行</span></div><div class="line">content = f.readlines()      <span class="comment"># 读取所有行，储存在列表中，每个元素是一行。</span></div><div class="line">f.write(<span class="string">'I like apple!\n'</span>)      <span class="comment"># 将'I like apple'写入文件并换行</span></div><div class="line">f.close()   <span class="comment"># 不要忘记关闭文件</span></div></pre></td></tr></table></figure>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p>一个.py文件就构成<strong>一个模块</strong>。通过模块，你可以<strong>调用</strong>其它文件中的程序。</p>
+<ol>
+<li>引入模块，用<code>import + 文件名（不要加后缀名）</code><br>引入模块后，可以通过 模块.对象 的方式来调用引入模块中的某个对象。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#first.py文件</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">laugh</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'HaHaHaHa'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> first   <span class="comment">#将first文件引入</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">    first.laugh()<span class="comment">#first为引入的模块，laugh()是我们所引入的对象。</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> a <span class="keyword">as</span> b             <span class="comment"># 引入模块a，并将模块a重命名为b</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> a <span class="keyword">import</span> function1   <span class="comment"># 从模块a中引入function1对象。调用a中对象时，我们不用再说明模块，即直接使用function1，而不是a.function1。</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> a <span class="keyword">import</span> *           <span class="comment"># 从模块a中引入所有对象。调用a中对象时，我们不用再说明模块，即直接使用对象，而不是a.对象。</span></div></pre></td></tr></table></figure>
+<ol>
+<li>Python会在以下路径中搜索它想要寻找的模块：<br>– 程序所在的文件夹<br>– 操作系统环境变量PYTHONPATH所包含的路径<br>– 标准库的安装路径</li>
+</ol>
+<p>如果自定义的模块，或者下载的模块，可以根据情况放在相应的路径，以便Python可以找到。</p>
+<ol>
+<li>模块包,可以将功能相似的模块放在同一个文件夹（比如说this_dir）中，构成一个模块包。通过<code>import this_dir.module</code><br>引入<code>this_dir</code>文件夹中的<code>module</code>模块。<br>该文件夹中必须包含一个<code>__init__.py</code> 的文件，提醒Python，该文件夹为一个模块包。<code>__init__.py</code> 可以是一个空文件。</li>
+</ol>
+<h3 id="函数的参数传递"><a href="#函数的参数传递" class="headerlink" title="函数的参数传递"></a>函数的参数传递</h3><p>一般为位置传递，但比较死板。</p>
+<ol>
+<li>关键字(keyword)传递是根据每个参数的名字传递参数。关键字并不用遵守位置的对应关系。</li>
+<li>参数默认值，有的参数有默认值可以不需要传递</li>
+<li>包裹传递：在定义函数时，我们有时候并不知道调用的时候会传递多少个参数。这时候，包裹(packing)位置参数，或者包裹关键字参数，来进行参数传递，会非常有用。<br>Example 1:</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(*name)</span>:</span></div><div class="line">    <span class="keyword">print</span> type(name)</div><div class="line">    <span class="keyword">print</span> name</div><div class="line"></div><div class="line">func(<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>)</div><div class="line">func(<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line"><span class="comment">#两次调用，尽管参数个数不同，都基于同一个func定义。</span></div><div class="line"><span class="comment">#在func的参数表中，所有的参数被name收集，根据位置合并成一个元组(tuple)，这就是包裹位置传递。</span></div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(**dict)</span>:</span></div><div class="line">    <span class="keyword">print</span> type(dict)</div><div class="line">    <span class="keyword">print</span> dict</div><div class="line"></div><div class="line">func(a=<span class="number">1</span>,b=<span class="number">9</span>)</div><div class="line">func(m=<span class="number">2</span>,n=<span class="number">1</span>,c=<span class="number">11</span>)</div><div class="line"><span class="comment">#dict是一个字典，收集所有的关键字，传递给函数func。</span></div><div class="line"><span class="comment">#为了提醒Python，参数dict是包裹关键字传递所用的字典，在dict前加 * *。</span></div></pre></td></tr></table></figure>
+<ol>
+<li>解包裹（unpacking）<br>* 和 **，也可以在调用的时候使用，即解包裹(unpacking).所谓的解包裹，就是在传递tuple时，让tuple的每一个元素对应一个位置参数。<br>Example :</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(a,b,c)</span>:</span></div><div class="line">    <span class="keyword">print</span> a,b,c</div><div class="line"></div><div class="line">args = (<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">func(*args)</div><div class="line"></div><div class="line">dict = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'b'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">3</span>&#125;</div><div class="line">func(**dict)</div></pre></td></tr></table></figure>
+<ol>
+<li>在定义或者调用参数时，参数的几种传递方式可以混合。但在过程中要小心前后顺序。基本原则是：<strong>先位置，再关键字，再包裹位置，再包裹关键字</strong>，并且根据上面所说的原理细细分辨。</li>
+</ol>
+<h3 id="循环设计-循环对象-函数对象"><a href="#循环设计-循环对象-函数对象" class="headerlink" title="循环设计 循环对象 函数对象"></a>循环设计 循环对象 函数对象</h3><ol>
+<li>循环设计<br>三个函数，<code>range(), enumerate(), zip()</code><br>–range() :<br>–enumerate() : 利用enumerate()函数，可以在每次循环中同时得到下标和元素，其返回的是一个包含两个元素的定值表(tuple)<br>–zip() : 如果你多个等长的序列，然后想要每次循环时从各个序列分别取出一个元素，可以利用zip()方便地实现</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">S = <span class="string">'abcdefghijk'</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(S),<span class="number">2</span>):</div><div class="line">    <span class="keyword">print</span> S[i]</div><div class="line"><span class="keyword">for</span> (index,char) <span class="keyword">in</span> enumerate(S):</div><div class="line">    <span class="keyword">print</span> index</div><div class="line">    <span class="keyword">print</span> char</div><div class="line">ta = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">tb = [<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>]</div><div class="line">tc = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</div><div class="line"><span class="keyword">for</span> (a,b,c) <span class="keyword">in</span> zip(ta,tb,tc):</div><div class="line">    print(a,b,c)</div></pre></td></tr></table></figure>
+<ol>
+<li><strong>循环对象</strong>：循环对象是这样一个对象，它包含有一个<code>next()</code>方法 ( <code>__next__()</code> 方法，在python 3x中 )， 这个方法的目的是进行到下一个结果，而在结束一系列结果之后，举出StopIteration错误。<br>当一个循环结构（比如for）调用循环对象时，<strong>它就会每次循环的时候调用next()方法</strong>，直到StopIteration出现，for循环接收到，就知道循环已经结束，停止调用next()。<br><strong>用循环对象的好处在于</strong>：不用在循环还没有开始的时候，就生成好要使用的元素。所使用的元素可以在循环过程中逐次生成。这样，节省了空间，提高了效率，编程更灵活。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> open(<span class="string">'test.txt'</span>):</div><div class="line">    <span class="keyword">print</span> line</div><div class="line"><span class="comment">#open()返回的实际上是一个循环对象，包含有next()方法。</span></div><div class="line"><span class="comment">#而该next()方法每次返回的就是新的一行的内容，到达文件结尾时举出StopIteration。这样，我们相当于手工进行了循环。</span></div></pre></td></tr></table></figure>
+<p><strong>迭代器</strong>：从技术上来说，循环对象和for循环调用之间还有一个中间层，就是要将循环对象转换成迭代器(iterator)。这一转换是通过使用iter()函数实现的。但从逻辑层面上，常常可以忽略这一层，所以循环对象和迭代器常常相互指代对方。<br><strong>生成器</strong>(generator)的主要目的是构成一个用户自定义的循环对象。<br>生成器的编写方法和函数定义类似，只是在return的地方<strong>改为yield</strong>。生成器中可以有多个yield。当生成器遇到一个yield时，会暂停运行生成器，返回yield后面的值。当再次调用生成器的时候，会从刚才暂停的地方继续运行，直到下一个yield。生成器自身又构成一个循环器，每次循环使用一个yield返回的值。<br>Example 1：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen</span><span class="params">()</span>:</span></div><div class="line">    a = <span class="number">100</span></div><div class="line">    <span class="keyword">yield</span> a</div><div class="line">    a = a*<span class="number">8</span></div><div class="line">    <span class="keyword">yield</span> a</div><div class="line">    <span class="keyword">yield</span> <span class="number">1000</span></div><div class="line"><span class="comment">#该生成器共有三个yield， 如果用作循环器时，会进行三次循环。</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> gen():</div><div class="line">    <span class="keyword">print</span> i</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</div><div class="line">        <span class="keyword">yield</span> i</div><div class="line"><span class="comment">#它又可以写成生成器表达式(Generator Expression)：</span></div><div class="line">G = (x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">4</span>))</div></pre></td></tr></table></figure>
+<p><strong>表推导</strong>是快速生成表的方法。它的语法简单，很有实用价值。<br>假设生成表 L ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">L = []</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">    L.append(x**<span class="number">2</span>)</div><div class="line"><span class="comment">#快捷的写法，也就是表推导的方式:</span></div><div class="line">L = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</div><div class="line"></div><div class="line">xl = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>]</div><div class="line">yl = [<span class="number">9</span>,<span class="number">12</span>,<span class="number">13</span>]</div><div class="line">L  = [ x**<span class="number">2</span> <span class="keyword">for</span> (x,y) <span class="keyword">in</span> zip(xl,yl) <span class="keyword">if</span> y &gt; <span class="number">10</span>]</div></pre></td></tr></table></figure>
+<ol>
+<li>函数对象<br>一切皆对象，函数也是一个对象，具有属性（可以使用dir()查询）。作为对象，它还可以赋值给其它对象名，或者作为参数传递。即函数也可以作为参数进行传递。</li>
+</ol>
+<p><strong>lambda()函数</strong>：用来<strong>定义函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">func = <span class="keyword">lambda</span> x,y: x + y</div><div class="line"><span class="keyword">print</span> func(<span class="number">3</span>,<span class="number">4</span>)</div><div class="line"><span class="comment">#lambda生成一个函数对象。该函数参数为x,y，返回值为x+y。</span></div><div class="line"><span class="comment">#函数对象赋给func。</span></div><div class="line"><span class="comment">#func的调用与正常函数无异。</span></div><div class="line"><span class="comment">#等价于下面这个函数定义</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(x, y)</span>:</span></div><div class="line">    <span class="keyword">return</span> x + y</div></pre></td></tr></table></figure>
+<p><strong>函数作为参数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(f, a, b)</span>:</span></div><div class="line">    <span class="comment">#print 'test'</span></div><div class="line">    <span class="keyword">print</span> f(a, b)</div><div class="line"></div><div class="line">test(func, <span class="number">3</span>, <span class="number">5</span>)</div><div class="line"><span class="comment">#上面等价于下面一行</span></div><div class="line">test((<span class="keyword">lambda</span> x,y: x**<span class="number">2</span> + y), <span class="number">6</span>, <span class="number">9</span>)</div></pre></td></tr></table></figure>
+<p><strong>map()函数</strong><br>map()是Python的内置函数。它的第一个参数是一个函数对象。map()的功能是将函数对象依次作用于表的每一个元素，每次作用的结果储存于返回的表re中。例如<code>re = map((lambda x: x+3),[1,3,5,6])</code>，map通过读入的函数(这里是lambda函数)来操作数据（这里“数据”是表中的每一个元素，“操作”是对每个数据加3）。<br>在Python 3.X中，map()的返回值是一个循环对象。可以利用list()函数，将该循环对象转换成表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#如果作为参数的函数对象有多个参数，可使用下面的方式，向map()传递函数参数的多个参数：</span></div><div class="line">re = map((<span class="keyword">lambda</span> x,y: x+y),[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">6</span>,<span class="number">7</span>,<span class="number">9</span>])</div><div class="line"><span class="comment">#map()将每次从两个表中分别取出一个元素，带入lambda所定义的函数。</span></div></pre></td></tr></table></figure>
+<p><strong>filter()函数</strong><br>filter函数的第一个参数也是一个函数对象。它也是将作为参数的函数对象作用于多个元素。<strong>如果函数对象返回的是True，则该次的元素被储存于返回的表中</strong>。 filter通过读入的函数来筛选数据。同样，在Python 3.X中，filter返回的不是表，而是循环对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(a)</span>:</span></div><div class="line">    <span class="keyword">if</span> a &gt; <span class="number">100</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"><span class="keyword">print</span> filter(func,[<span class="number">10</span>,<span class="number">56</span>,<span class="number">101</span>,<span class="number">500</span>])</div></pre></td></tr></table></figure>
+<p><strong>reduce函数</strong><br>reduce函数的第一个参数也是函数，但有一个要求，就是这个函数自身能接收两个参数。reduce可以累进地将函数作用于各个参数。如下例：</p>
+<p><code>print reduce((lambda x,y: x+y),[1,2,5,7,9])</code><br>reduce的第一个参数是lambda函数，它接收两个参数x,y, 返回x+y。</p>
+<p>reduce将表中的前两个元素(1和2)传递给lambda函数，得到3。该返回值(3)将作为lambda函数的第一个参数，而表中的下一个元素(5)作为lambda函数的第二个参数，进行下一次的对lambda函数的调用，得到8。依次调用lambda函数，每次lambda函数的第一个参数是上一次运算结果，而第二个参数为表中的下一个元素，直到表中没有剩余元素。</p>
+<p>上面例子，相当于(((1+2)+5)+7)+9</p>
+<p><em>提醒： reduce()函数在3.0里面不能直接用的，它被定义在了functools包里面，需要引入包。</em></p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/11/05/pythonbases/"
+                    data-title="Python入门"
+                    data-url="http://wenjiewang.top/2016/11/05/pythonbases/"
+                    data-images="http://wenjiewang.top/2016/11/05/pythonbases//img/blue.jpg"
+                    data-content="Python基本知识
+区分大小写，用#来注释
+用缩进（四个空格）来表示块
+变量的类型可以变，即... | Jerry的博客 | Jerry&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/10/31/ML-second/" data-toggle="tooltip" data-placement="top" title="Multivariate Linear Regression and the Octave">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/11/05/pythonbases/"
+                        data-title="Python入门"
+                        data-url="http://wenjiewang.top/2016/11/05/pythonbases/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#学习手册" title="学习手册">学习手册</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://fangheart.top" target="_blank">FangHeart&#39;s Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'jerry2016';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/wang-wen-jie-67-91">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/2952571673">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LJerRRy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Jerry&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wenjiewang.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wenjiewang.top/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
