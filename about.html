@@ -1,53 +1,54 @@
 ---
 layout: page
 title: "About"
-description: "Hey, this is Hux."
-header-img: "img/about-bg.jpg"
+description: "Hey, this is Jerry."
+header-img: "img/404-bg.jpg"
 ---
 
-<p>Building</p>
 
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    // get nodes
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    var $select = document.querySelector("select");
-
-    // bind hashchange event
-    window.addEventListener('hashchange', _render);
-
-    // handle render
-    function _render(){
-        var _hash = window.location.hash;
-        // en
-        if(_hash == "#en"){
-            $select.selectedIndex = 1;
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        // zh by default
-        }else{
-            // not trigger onChange, otherwise cause a loop call.
-            $select.selectedIndex = 0;
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }
-    }
-
-    // handle select change
-    function onLanChange(index){
-        if(index == 0){
-            window.location.hash = "#zh"
-        }else{
-            window.location.hash = "#en"
-        }
-    }
-
-    // init
-    _render();
-</script>
+<div id="posts" class="posts-expand">
 
 
+
+    <p></p><p></p>
+    <blockquote class="blockquote-center">Life is like a box of chocolates, U never know what you’re gonna get !</blockquote>
+    <br>
+    <h4 id="LOCATION"><a href="#LOCATION" class="headerlink" title="LOCATION"></a>LOCATION</h4>
+       <iframe width="100%" frameborder="0" src="/about_map.html"></iframe>
+
+    <br>
+    <br>
+
+    <h4 id="EDUCATION"><a href="#EDUCATION" class="headerlink" title="EDUCATION"></a>EDUCATION</h4>
+        <ul>
+            <li>B.A. : <strong>ChongQing University</strong> ， Software Engineering ， <code>Sep. 2012 - Jun. 2016</code></li>
+            <li>M.A. : <strong>Beijing Institute University</strong> ， Software Engineering ，  <code>Present</code></li>
+        </ul>
+    <br>
+    <h4 id="SKILLS"><a href="#SKILLS" class="headerlink" title="SKILLS"></a>SKILLS</h4>
+        <ul>
+            <li>Familiarity with <code>Java</code></li>
+            <li>Experience on <code>Web Technology</code>-- JSP, HTML5, javascript</li>
+            <li>Experience on <code>C++</code>, <code>Python</code>, <code>Shell</code></li>
+            <li>Now, Develop on <code>Ubuntu</code></li>
+        </ul>
+    <br>
+
+    <h4 id="DOING"><a href="#DOING" class="headerlink" title="DOING"></a>DOING</h4>
+        <ul>
+            <input type="checkbox" id="checkbox379" ><label for="checkbox379"> &nbsp Web Spider</label><br>
+            <input type="checkbox" id="checkbox379" ><label for="checkbox379"> &nbsp Machine Learning</label>
+        </ul>
+
+    <br>
+    <h4 id="CONTACT"><a href="#CONTACT" class="headerlink" title="CONTACT"></a>CONTACT</h4>
+        <ul>
+            <li>Website: <a target="_blank" href="http://wenjiewang.top/">http://wenjiewang.top/</a></li>
+            <li>Email: 20121954@cqu.edu.cn</li>
+            <li>Zhihu: <a target="_blank" href="https://www.zhihu.com/people/wang-wen-jie-67-91">https://www.zhihu.com/people/wang-wen-jie-67-91</a></li>
+            <li>Weibo: <a href="http://weibo.com/2952571673" target="_blank">http://weibo.com/2952571673</a></li>
+        </ul>
+</div>
 
 {% if site.duoshuo_username %}
 <!-- 多说评论框 start -->
@@ -83,30 +84,4 @@ header-img: "img/about-bg.jpg"
     })();
 </script>
 <!-- 多说公共JS代码 end -->
-{% endif %}
-
-
-{% if site.disqus_username %}
-<!-- disqus 评论框 start -->
-<div class="comment">
-    <div id="disqus_thread" class="disqus-thread">
-
-    </div>
-</div>
-<!-- disqus 评论框 end -->
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus_username}}";
-    var disqus_identifier = "{{site.disqus_username}}/{{page.url}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
 {% endif %}
