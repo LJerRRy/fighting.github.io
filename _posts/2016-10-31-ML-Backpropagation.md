@@ -4,7 +4,7 @@ title: Backpropagation and  cost function for neural network
 date: 2016-10-31 09:12:05
 author: "Jerry"
 catalog:    true
-header-img: "/img/blue.png"
+header-img: "img/blue.png"
 tags: 
     - Machine Learning
     - Ng

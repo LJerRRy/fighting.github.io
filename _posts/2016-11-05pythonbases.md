@@ -4,7 +4,7 @@ title: Python入门
 date: 2016-11-05 13:52:05
 author: "Jerry"
 catalog:    true
-header-img: "/img/blue.png"
+header-img: "img/blue.png"
 tags: 
     - 学习手册
     - Python

@@ -4,7 +4,7 @@ title: Chapter Two and One
 subtitle: "排序算法,插入和归并排序"
 date: 2016-09-28 12:11:05
 author: "Jerry"
-header-img: "/img/blue.png"
+header-img: "img/blue.png"
 tags: 
     - Algorithm
     - 算法导论

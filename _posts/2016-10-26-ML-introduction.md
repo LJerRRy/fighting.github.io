@@ -4,7 +4,7 @@ title: Introduction of Machine Learning
 date: 2016-10-26 12:11:05
 author: "Jerry"
 catalog:    true
-header-img: "/img/blue.png"
+header-img: "img/blue.png"
 tags: 
     - Machine Learning
     - Ng

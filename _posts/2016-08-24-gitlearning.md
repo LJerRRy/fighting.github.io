@@ -4,7 +4,7 @@ title: git学习手册2
 date: 2016-08-24 11:07:57
 author: "Jerry"
 catalog:    true
-header-img: "/img/blue.png"
+header-img: "img/blue.png"
 tags: 
     - Git
     - 学习手册
