@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Palindrome Number
 date: 2016-10-25 00:16:23
 catalog:    true

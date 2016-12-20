@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Leetcode-389-390
 date: 2016-08-30 09:10:01
 catalog:    true

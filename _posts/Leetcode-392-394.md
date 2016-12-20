@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Leetcode-392-394(共四道)
 date: 2016-09-07 01:17:21
 catalog:    true

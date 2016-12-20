@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Introduction of Machine Learning
 date: 2016-10-26 12:11:05
 author: "Jerry"

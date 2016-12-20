@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Python入门
 date: 2016-11-05 13:52:05
 author: "Jerry"

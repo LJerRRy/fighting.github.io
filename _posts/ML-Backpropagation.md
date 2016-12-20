@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Backpropagation and  cost function for neural network
 date: 2016-10-31 09:12:05
 author: "Jerry"

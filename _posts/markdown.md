@@ -1,4 +1,5 @@
 ---
+layout: post
 title: How to markdown
 date: 2016-08-22 00:48:19
 catalog:    true

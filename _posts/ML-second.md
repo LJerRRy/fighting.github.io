@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Multivariate Linear Regression and the Octave
 date: 2016-10-31 09:12:05
 author: "Jerry"

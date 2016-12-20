@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Leetcode-5-7
 date: 2016-09-11 13:15:24
 catalog:    true

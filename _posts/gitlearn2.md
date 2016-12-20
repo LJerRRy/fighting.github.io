@@ -1,4 +1,5 @@
 ---
+layout: post
 title: git学习手册2
 date: 2016-08-24 11:07:57
 author: "Jerry"

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Leetcode-396-399
 date: 2016-09-12 22:53:21
 catalog:    true

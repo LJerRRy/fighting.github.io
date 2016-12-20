@@ -1,4 +1,5 @@
 ---
+layout: post
 title: R Learnning
 date: 2016-10-20 22:48:19
 author: "Jerry"
