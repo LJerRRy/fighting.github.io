@@ -70,7 +70,7 @@ duoshuo_share: true                     # set to false if you want to use Commen
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "除了奋斗，我别无选择！<br> 离开世界之前，一切都是过程"
+sidebar-about-description: "业精于勤，荒于嬉；<br> 行成于思，毁于随"
 sidebar-avatar: /img/mingren.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
